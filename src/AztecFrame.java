@@ -58,8 +58,8 @@ public class AztecFrame extends JFrame{
         generateBtn.setText("Generálás");
 
         TextArea.setFont(new java.awt.Font("Segoe UI", 0, 18));
-        TextArea.setBorder(BorderFactory.createLineBorder(new java.awt.Color(22, 125, 215), 2));
         ScrollPanel.setViewportView(TextArea);
+        ScrollPanel.setBorder(BorderFactory.createLineBorder(new java.awt.Color(22, 125, 215), 2));
 
         statTitleLbl.setFont(new java.awt.Font("Segoe UI", 1, 14));
         statTitleLbl.setText("Státusz:");
@@ -113,7 +113,7 @@ public class AztecFrame extends JFrame{
 
         centerPnl.setLayout(new GridLayout(1, 1));
         centerPnl.setBorder(BorderFactory.createEmptyBorder(10,10,0,10));
-        centerPnl.add(TextArea);
+        centerPnl.add(ScrollPanel);
         mainPnl.add(centerPnl, BorderLayout.CENTER);
     }
 
