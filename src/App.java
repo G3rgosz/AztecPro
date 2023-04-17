@@ -60,8 +60,9 @@ public class App {
         String url = aztecFrm.getPathTF().getText()+"/";
 
         String charset = "UTF-8";
-        int sCounter = 0;
-        int fCounter = 0;
+        String regex = "^\\d{10}$";
+        int counter = 0;
+        String statText  = "";
 
         try {
             StringReader stringReader = new StringReader(text);
@@ -71,14 +72,21 @@ public class App {
             while ((line = bufferedReader.readLine()) != null) {
                 String[] rowData = line.split("\\t");
                 String data = rowData[0];
+                counter++;
+                if(data.matches(regex) == false){
+                    statText = "<html>" +"<br/>Regex hiba az alábbi sorszámú adatnál: " + counter + "<br/>" + "Ellenőrizd, hogy pontosan 10 karakter hosszú számot adtál meg <br/>" + "<br/>Sikeresen létrehozva: " + (counter-1) + "</html>";
+                    break;
+                }else{
+                    statText = "<html>" +"<br/>Sikeresen létrehozva: " + counter + "</html>";
+                }
                 String filename = rowData[1];
                 String path = url + filename;
                 try {
                     createAZTEC(data, path + ".png", charset, 925, 925);
-                    sCounter++;
                 } catch (WriterException e1) {
                     e1.printStackTrace();
-                    fCounter++;
+                    statText = "<html>" +"<br/>Az alábbi sorszámú Aztec kód létrehozása sikertelen: " + counter + "<br/>" + "Ellenőrizd, hogy megfelelően adtad-e meg az adatot"+ "</html>";
+                    break;
                 }
                 if(aztecFrm.getPdfCBox().isSelected()){
                     createPdf(path);
@@ -90,9 +98,9 @@ public class App {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-            aztecFrm.getStatusLbl().setText("Hiba! :( ");
+            statText = "Hiányzó vagy hibás adat! :( ";
         }
-        aztecFrm.getStatusLbl().setText("<html>" +"<br/>Sikeres: " + sCounter + "<br/>" + "<br/>Sikertelen: " + fCounter + "</html>");
+        aztecFrm.getStatusLbl().setText(statText);
         aztecFrm.getGenerateBtn().setEnabled(true);
     }
     private static void createAZTEC(String data, String path, String charset,int height, int width) throws WriterException, IOException {
