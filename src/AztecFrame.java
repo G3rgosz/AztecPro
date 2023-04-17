@@ -58,6 +58,7 @@ public class AztecFrame extends JFrame{
         generateBtn.setText("Generálás");
 
         TextArea.setFont(new java.awt.Font("Segoe UI", 0, 18));
+        TextArea.setBorder(BorderFactory.createLineBorder(new java.awt.Color(22, 125, 215), 2));
         ScrollPanel.setViewportView(TextArea);
 
         statTitleLbl.setFont(new java.awt.Font("Segoe UI", 1, 14));
