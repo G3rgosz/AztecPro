@@ -1,7 +1,7 @@
 // * File: App.java
 // * Author: Szivák Gergő
 // * Copyright: 2023, Szivák Gergő
-// * Date: 2023-03-02
+// * Date: 2023-04-17
 // * Github: https://github.com/G3rgosz
 // * Licenc: GNU GPL
 

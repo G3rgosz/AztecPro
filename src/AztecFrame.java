@@ -1,3 +1,10 @@
+// * File: AztecFrame.java
+// * Author: Szivák Gergő
+// * Copyright: 2023, Szivák Gergő
+// * Date: 2023-04-17
+// * Github: https://github.com/G3rgosz
+// * Licenc: GNU GPL
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
@@ -41,7 +48,7 @@ public class AztecFrame extends JFrame{
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 500);
-        setTitle("Gergosz - AztecPro");
+        setTitle("Gergosz - aztecPro");
         northPnl.setBackground(new java.awt.Color(22, 125, 215));
         setLayout( new GridLayout( 1, 1 ) );
 
@@ -58,7 +65,7 @@ public class AztecFrame extends JFrame{
 
         statusLbl.setFont(new java.awt.Font("Tahoma", 1, 12));
 
-        descriptionLbl.setText("Add meg az aztec kód adatát, majd tabulátorral elválasztva a nevét is ;)");
+        descriptionLbl.setText("<html><div style='text-align: center;'>Add meg az aztec kód adatát, majd tabulátorral elválasztva a nevét is!<br/>(Az adatnak 10 számjegyből kell állnia)</div></html>");
         descriptionLbl.setFont(new java.awt.Font("Segoe UI", 0, 14));
         descriptionLbl.setForeground(new java.awt.Color(255, 255, 255));
 
