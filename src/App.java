@@ -1,7 +1,7 @@
 // * File: App.java
 // * Author: Szivák Gergő
 // * Copyright: 2023, Szivák Gergő
-// * Date: 2023-04-17
+// * Date: 2023-04-18
 // * Github: https://github.com/G3rgosz
 // * Licenc: GNU GPL
 
@@ -61,7 +61,7 @@ public class App {
 
         String charset = "UTF-8";
         String regex = "^\\d{10}$";
-        int counter = 0;
+        int counter = 1;
         String statText  = "";
 
         try {
@@ -70,30 +70,36 @@ public class App {
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
-                String[] rowData = line.split("\\t");
-                String data = rowData[0];
-                counter++;
-                if(data.matches(regex) == false){
-                    statText = "<html>" +"<br/>Regex hiba az alábbi sorszámú adatnál: " + counter + "<br/>" + "Ellenőrizd, hogy pontosan 10 karakter hosszú számot adtál meg <br/>" + "<br/>Sikeresen létrehozva: " + (counter-1) + "</html>";
-                    break;
-                }else{
-                    statText = "<html>" +"<br/>Sikeresen létrehozva: " + counter + "</html>";
-                }
-                String filename = rowData[1];
-                String path = url + filename;
                 try {
-                    createAZTEC(data, path + ".png", charset, 925, 925);
-                } catch (WriterException e1) {
-                    e1.printStackTrace();
-                    statText = "<html>" +"<br/>Az alábbi sorszámú Aztec kód létrehozása sikertelen: " + counter + "<br/>" + "Ellenőrizd, hogy megfelelően adtad-e meg az adatot"+ "</html>";
+                    String[] rowData = line.split("\\t");
+                    String data = rowData[0];
+                    String filename = rowData[1];
+                    
+                    if(data.matches(regex) == false){
+                        statText = "<html>" +"<br/>Regex hiba az alábbi sorszámú adatnál: " + counter + "<br/><br/>Fájl név: " + filename + "<br/><br/>Ellenőrizd, hogy pontosan 10 karakter hosszú számot adtál meg <br/>" + "<br/>Sikeresen létrehozva: " + (counter-1) + "</html>";
+                        break;
+                    }else{
+                        statText = "<html>" +"<br/>Sikeresen létrehozva: " + counter + "</html>";
+                    }
+                    String path = url + filename;
+                    try {
+                        createAZTEC(data, path + ".png", charset, 925, 925);
+                    } catch (WriterException e1) {
+                        e1.printStackTrace();
+                        statText = "<html>" +"<br/>Az alábbi sorszámú Aztec kód létrehozása sikertelen: " + counter + "<br/>" + "Ellenőrizd, hogy megfelelően adtad-e meg az adatot"+ "</html>";
+                        break;
+                    }
+                    if(aztecFrm.getPdfCBox().isSelected()){
+                        createPdf(path);
+                    }
+                    if(aztecFrm.getPngCBox().isSelected() == false){
+                        File png = new File(path + ".png"); 
+                        png.delete();
+                    }
+                    counter++;
+                } catch (Exception e) {
+                    statText = "<html>" +"<br/>Nem megfelelően adtad meg az adatot és/vagy fájlnevet az alábbi sorszámú adatnál: " + counter + "<br/><br/>Sikeresen létrehozva: " + (counter-1) + "</html>";
                     break;
-                }
-                if(aztecFrm.getPdfCBox().isSelected()){
-                    createPdf(path);
-                }
-                if(aztecFrm.getPngCBox().isSelected() == false){
-                    File png = new File(path + ".png"); 
-                    png.delete();
                 }
             }
         } catch (IOException ex) {
