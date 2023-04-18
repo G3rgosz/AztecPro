@@ -3,12 +3,10 @@
 java 17.0.6 2023-01-17 LTS
 
 ## **Ismertető**
-Ez a program Aztec típusú mátrix kódok generálására és png/pdf fájlba mentésére készült
-Az alábbi fájltípusokba képes menteni:
+- Ez a program Aztec típusú mátrix kódok generálására és png/pdf fájlba mentésére használható
+- A szoftver célirányos használatra készült (NM Zrt.)
+- 10 karakter hosszú számsorból generál kódot
 
-- A szoftver célirányos használatra készült
-- 10 karakter hosszú szöveget kezel
-- Készítő: Szivák Gergő (NMZRT)
 
 [Github](https://github.com/g3rgosz)
 ### Használata
