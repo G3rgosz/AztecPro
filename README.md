@@ -19,6 +19,9 @@ java 17.0.6 2023-01-17 LTS
 
 ### Minta szöveg:
 
-    1234567890  fájlnév
+    3456789012	fájlnév
+    1234567890	aztec
+    0987654321	code
+    4321056789	teszt
 
 >A generálandó kódot(adatot) és fájlnevet **tabulátorral** kell elválasztani, ellenkező esetben nem fog végbemenni a kódgenerálás!
