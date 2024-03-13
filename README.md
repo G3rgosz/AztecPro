@@ -4,7 +4,6 @@ java 17.0.6 2023-01-17 LTS
 
 ## **Ismertető**
 - Ez a program Aztec típusú mátrix kódok generálására és png/pdf fájlba mentésére használható
-- A szoftver célirányos használatra készült (NM Zrt.)
 - 10 karakter hosszú számsorból generál kódot
 
 
